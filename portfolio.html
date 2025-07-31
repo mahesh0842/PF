@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahesh Yadav</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #10b981;
+            --light: #f1f5f9;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --bg-light: #f8fafc;
+            --text-light: #0f172a;
+            --card-light: #ffffff;
+            --nav-light: #ffffff;
+            --primary-light: #f0f9ff;
+            --primary-lighter: #e0f2fe;
+        }
+
+        [data-theme="dark"] {
+            --bg-light: #0f172a;
+            --text-light: #f1f5f9;
+            --card-light: #1e293b;
+            --nav-light: #1e293b;
+            --primary-light: #1e3a8a;
+            --primary-lighter: #1e40af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .code-font {
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-outline-primary {
+            color: var(--primary);
+            border-color: var(--primary);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: var(--nav-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            transition: all 0.4s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .navbar-brand span {
+            color: var(--text-light);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            padding: 8px 15px !important;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--primary);
+            color: white !important;
+        }
+
+        /* Hero Section */
+        #hero {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-lighter) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-img {
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-width: 90%;
+            border: 5px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .hero-highlight {
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .hero-bg-element {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary) 0%, rgba(37, 99, 235, 0.1) 100%);
+            border-radius: 30px;
+            transform: rotate(45deg);
+            top: -100px;
+            right: -100px;
+            z-index: 1;
+        }
+
+        .follow-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .follow-btn {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+        }
+
+        .follow-btn i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .github-btn {
+            background-color: #333;
+        }
+
+        .github-btn:hover {
+            background-color: #24292e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(36, 41, 46, 0.2);
+        }
+
+        .linkedin-btn {
+            background-color: #0a66c2;
+        }
+
+        .linkedin-btn:hover {
+            background-color: #004182;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(10, 102, 194, 0.2);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--card-light);
+        }
+
+        .about-img {
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge {
+            display: inline-block;
+            background-color: #dbeafe;
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Projects Section */
+        .project-card {
+            background: var(--card-light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-tech {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .project-links a {
+            color: var(--gray);
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-lighter) 100%);
+        }
+
+        .contact-form {
+            background: var(--card-light);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control {
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        .contact-info {
+            padding: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            color: #94a3b8;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+        }
+
+        /* Resume Button */
+        .resume-btn {
+            margin-left: 15px;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 15px;
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary);
+            transform: rotate(15deg);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            #hero {
+                padding: 120px 0 80px;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero-bg-element {
+                width: 300px;
+                height: 300px;
+                top: -80px;
+                right: -80px;
+            }
+            
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .follow-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><span>Mahesh Yadav </span>Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link resume-btn" href="#" id="downloadResume">
+                            <i class="fas fa-download me-2"></i>Resume
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-bg-element"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h4 class="code-font">Hello, I'm</h4>
+                    <h1>Mahesh<span class="hero-highlight">Yadav</span></h1>
+                    <h2 class="hero-subtitle">Software Engineer</h2>
+                    <p class="lead mb-4">I design and build scalable solutions that solve complex problems. With over 2 years of experience in full-stack development, I transform ideas into high-performance applications.</p>
+                    <div class="d-flex gap-3 mb-4">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="#contact" class="btn btn-outline-primary">Contact Me</a>
+                    </div>
+                    
+                    <div class="follow-buttons">
+                        <a href="https://github.com/mahesh0842" target="_blank" class="follow-btn github-btn">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/mahesh-yadav-334ba916a/" target="_blank" class="follow-btn linkedin-btn">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                        <a href="#" class="btn btn-primary resume-btn">
+                            <i class="fas fa-download me-2"></i>Download Resume
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="images/heroimg.jpg" 
+     alt="Mahesh Yadav - Software Engineer" 
+     class="hero-img mt-5 mt-lg-0">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p class="section-subtitle">Learn more about my background, skills, and professional experience</p>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="About" class="about-img">
+                </div>
+                <div class="col-lg-7">
+                    <h3>Full-Stack Engineer with a Passion for Innovation</h3>
+                    <p class="mb-4">I'm a software engineer specializing in building robust, scalable web applications. With a Master's degree in Computer Science and 8+ years of industry experience, I've delivered solutions for clients ranging from startups to Fortune 500 companies.</p>
+                    
+                    <p class="mb-4">My technical expertise spans both front-end and back-end development, with a focus on creating seamless user experiences backed by efficient, secure systems. I'm passionate about adopting new technologies while ensuring maintainable, well-documented code.</p>
+                    
+                    <h4 class="mt-5 mb-4">Technical Skills</h4>
+                    <div class="skills-container">
+                        <span class="skill-badge">JavaScript/TypeScript</span>
+                        <span class="skill-badge">React.js</span>
+                        <span class="skill-badge">Node.js</span>
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">Django</span>
+                        <span class="skill-badge">AWS</span>
+                        <span class="skill-badge">Docker</span>
+                        <span class="skill-badge">Kubernetes</span>
+                        <span class="skill-badge">SQL/NoSQL</span>
+                        <span class="skill-badge">GraphQL</span>
+                        <span class="skill-badge">CI/CD</span>
+                        <span class="skill-badge">Microservices</span>
+                    </div>
+                    
+                    <div class="mt-5">
+                        <a href="#" class="btn btn-primary me-3" id="downloadResume2"><i class="fas fa-download me-2"></i>Download CV</a>
+                        <a href="https://www.linkedin.com/in/mahesh-yadav-334ba916a/" target="_blank" class="btn btn-outline-primary"><i class="fab fa-linkedin-in me-2"></i>LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Projects</h2>
+                <p class="section-subtitle">Explore my latest technical projects and contributions</p>
+            </div>
+            <div class="row g-4">
+                <!-- Project 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Project" class="project-img">
+                        <div class="project-content">
+                            <h3 class="project-title">Student Management System </h3>
+                            <p class="project-tech">Python,FASTApi,SQL,HTML5,CSS,Bootstrap</p>
+                            <p class="mb-3">Scalable inventory management system with real-time analytics and automated reporting for enterprise clients.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/mahesh0842/API-PROJECT" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Project" class="project-img">
+                        <div class="project-content">
+                            <h3 class="project-title">AI-Powered Healthcare Platform</h3>
+                            <p class="project-tech">Python, TensorFlow, Django, PostgreSQL</p>
+                            <p class="mb-3">Machine learning platform that analyzes medical data to assist healthcare providers in diagnosis and treatment planning.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Case Study</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1555066932-e78dd8fb77bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Project" class="project-img">
+                        <div class="project-content">
+                            <h3 class="project-title">IoT Energy Monitoring</h3>
+                            <p class="project-tech">React Native, Node.js, IoT, Firebase</p>
+                            <p class="mb-3">Mobile application for monitoring and optimizing energy consumption across smart home devices in real-time.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" target="_blank"><i class="fab fa-google-play"></i> Play Store</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Me</h2>
+                <p class="section-subtitle">Have a project in mind or want to discuss opportunities? Get in touch!</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-7 mb-5 mb-lg-0">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Subject">
+                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Location</h5>
+                                <p>Mumbai, INDIA</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <p>mahesh767000@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5>Phone</h5>
+                                <p>+91 123456788</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h5>Working Hours</h5>
+                                <p>Monday - Saturday: 9AM - 6PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-5">
+                        <h5 class="mb-3">Follow Me</h5>
+                        <div class="d-flex">
+                            <a href="https://github.com/mahesh0842" target="_blank" class="btn btn-outline-primary me-3"><i class="fab fa-github me-2"></i> GitHub</a>
+                            <a href="https://www.linkedin.com/in/mahesh-yadav-334ba916a/" target="_blank" class="btn btn-outline-primary"><i class="fab fa-linkedin-in me-2"></i> LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h3 class="text-white mb-4">Mahesh Yadav </h3>
+                    <p class="mb-4">Full-stack engineer specializing in building scalable, high-performance applications with cutting-edge technologies.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/mahesh-yadav-334ba916a/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/mahesh0842" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter" targe="_blank"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-medium-m"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a href="#hero">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Services</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a href="#">Web Development</a>
+                        <a href="#">Mobile Apps</a>
+                        <a href="#">Cloud Solutions</a>
+                        <a href="#">System Architecture</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center copyright">
+                    <p>&copy; 2023 Mahesh Yadav. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Check for saved theme or preferred scheme
+        const currentTheme = localStorage.getItem('theme') || 
+                           (prefersDarkScheme.matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        
+        // Update icon
+        if (currentTheme === 'dark') {
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '10px 0';
+                navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.padding = '20px 0';
+                navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission (opens email client)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = 'mahesh767000@gmail.com';
+            const subject = document.querySelector('input[placeholder="Subject"]').value || 'Portfolio Inquiry';
+            const body = document.querySelector('textarea').value;
+            
+            window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        });
+        
+        // Resume download buttons
+        document.querySelectorAll('#downloadResume, #downloadResume2, .resume-btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open('https://drive.google.com/file/d/1KYHXUNbsuo0lZ8z_28txMRmFSPwMe1EG/view?usp=drive_link', '_blank');
+    });
+});
+
+    </script>
+</body>
+</html>
