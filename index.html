@@ -844,11 +844,14 @@
         
         // Resume download buttons
         document.querySelectorAll('#downloadResume, #downloadResume2, .resume-btn').forEach(button => {
-    button.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.open('https://drive.google.com/file/d/1KYHXUNbsuo0lZ8z_28txMRmFSPwMe1EG/view?usp=drive_link', '_blank');
-    });
-});
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const link = document.createElement('a');
+                link.href = 'resume/Mahesh_Yadav_Resume.pdf';
+                link.download = 'Mahesh_Yadav_Resume.pdf';
+                link.click();
+            });
+        });
 
     </script>
 </body>
